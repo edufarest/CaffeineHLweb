@@ -31,4 +31,12 @@ router.post('/', (req, res) => {
 
 });
 
+router.delete('/:drink_id', (req, res) => {
+
+  Drink.remove(req.params['drink_id']).then(() => {
+    res.send(req.params['drink_id'] + " deleted");
+  })
+
+});
+
 module.exports = router;

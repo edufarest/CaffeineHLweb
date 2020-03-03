@@ -25,7 +25,14 @@ const find = (params) => {
 
 };
 
+const remove = (drink_id) => {
+
+    return Drink.deleteOne({_id: drink_id});
+
+};
+
 module.exports = {
     create,
     find,
+    remove,
 };
