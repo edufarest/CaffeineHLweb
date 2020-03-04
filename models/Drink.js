@@ -2,13 +2,13 @@ var mongoose = require('mongoose');
 
 let drinkSchema = new mongoose.Schema({
     name: {type: String, default: "Drink"},
-    servingSize: {type: Number, min: 1}, // ml
+    servingSize: {type: Number, min: 0}, // ml
     caffeine: {type: Number, min: 0},    // mg
 });
 
 let Drink = mongoose.model('Drink', drinkSchema);
 
-const create = (name, servingSize, caffeine, decay) => {
+const create = (name, servingSize, caffeine) => {
 
   let drink = new Drink({name: name, servingSize: servingSize, caffeine: caffeine});
 

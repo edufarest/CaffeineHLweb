@@ -9,6 +9,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var drinksRouter = require('./routes/drinks');
 
+var caffInformerScraper = require('./services/caffeineInformer');
+
 var app = express();
 
 // Mongoose
@@ -51,5 +53,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// FIXME Hardcoded to scrape all time
+caffInformerScraper.scrape();
 
 module.exports = app;
