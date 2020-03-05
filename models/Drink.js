@@ -31,8 +31,16 @@ const remove = (drink_id) => {
 
 };
 
+const upsert = (name, servingSize, caffeine) => {
+
+    return Drink.findOneAndUpdate({name: name}, {servingSize: servingSize, caffeine: caffeine},
+                            {new:true, upsert:true});
+
+};
+
 module.exports = {
     create,
     find,
     remove,
+    upsert,
 };

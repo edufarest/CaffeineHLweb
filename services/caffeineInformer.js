@@ -42,9 +42,9 @@ const scrape = () => {
 
                 // FIXME Create or Update. Currently creating blindly
                 // FIXME Create seed mongodb scripts
-                Drink.create(name, servingSize, caffeine)
+                Drink.upsert(name, servingSize, caffeine)
                     .then((drink) => {
-                        console.log("Created " + drink);
+                        console.log("Created/Updated " + drink);
                     }).catch((err) => {
                     console.log("Could not create drink " + err);
                 });

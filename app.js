@@ -54,7 +54,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// FIXME Hardcoded to scrape all time
 caffInformerScraper.scrape();
 
 module.exports = app;
