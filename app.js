@@ -59,7 +59,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
+// FIXME Do not run everytime
 caffInformerScraper.scrape();
 
 module.exports = app;
