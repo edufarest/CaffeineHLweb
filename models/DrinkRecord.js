@@ -15,14 +15,16 @@ const create = (drink, date) => {
 
 };
 
-const getRecords = (from, to = Date.now()) => {
+const getRecords = (from = Date.now()-24*60*60*1000, to = Date.now()) => {
 
     return DrinkRecord.find({
         date: {
             $gt: from,
             $lt: to,
         }
-    }).exec();
+    })
+        .populate('drink')
+        .exec();
 
 };
 
