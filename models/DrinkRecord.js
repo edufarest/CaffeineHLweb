@@ -28,7 +28,14 @@ const getRecords = (from = Date.now()-24*60*60*1000, to = Date.now()) => {
 
 };
 
+const deleteRecord = id => {
+
+    return DrinkRecord.deleteOne({_id: id});
+
+};
+
 module.exports = {
     create,
     getRecords,
+    deleteRecord,
 };
