@@ -7,6 +7,8 @@ router.get('/', (req, res) => {
 
   Drink.find().then((drinks) => {
     res.json(drinks);
+  }).catch(err => {
+    res.status(500).send(err);
   })
 
 });
