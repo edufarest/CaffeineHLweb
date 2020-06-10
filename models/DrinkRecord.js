@@ -15,7 +15,8 @@ const create = (drink, date) => {
 
 };
 
-const getRecords = (from = Date.now()-24*60*60*1000, to = Date.now()) => {
+const dayInMs = 24*60*60*1000;
+const getRecords = (from = Date.now() - dayInMs, to = Date.now()) => {
 
     return DrinkRecord.find({
         date: {
