@@ -15,18 +15,28 @@ const create = (drink, date) => {
 
 };
 
-const getRecords = (from, to = Date.now()) => {
+const dayInMs = 24*60*60*1000;
+const getRecords = (from = Date.now() - dayInMs, to = Date.now()) => {
 
     return DrinkRecord.find({
         date: {
             $gt: from,
             $lt: to,
         }
-    }).exec();
+    })
+        .populate('drink')
+        .exec();
+
+};
+
+const deleteRecord = id => {
+
+    return DrinkRecord.deleteOne({_id: id});
 
 };
 
 module.exports = {
     create,
     getRecords,
+    deleteRecord,
 };

@@ -26,34 +26,17 @@ router.post('/', (req, res) => {
 
 });
 
-// router.get('/', (req, res) => {
-//
-//   Drink.find().then((drinks) => {
-//     res.json(drinks);
-//   })
-//
-// });
-//
-// router.post('/', (req, res) => {
-//
-//   if (req.body) {
-//
-//     const name = req.body.name;
-//     const servingSize = req.body.servingSize;
-//     const caffeine = req.body.caffeine;
-//
-//     Drink.create(name, servingSize, caffeine).then((drink) => {
-//       res.json(drink);
-//     }).catch((err) => {
-//       res.status(500).send(err);
-//     })
-//
-//   } else {
-//     res.status().send('Missing parameters. Need name, serving size and caffeine');
-//   }
-//
-// });
-//
+router.delete('/:record_id', (req, res) => {
+
+    DrinkRecord.deleteRecord(req.params.record_id).then(() => {
+        res.sendStatus(200);
+    }).catch(err => {
+        console.error(err);
+        res.sendStatus(500);
+    })
+
+});
+
 // router.delete('/:drink_id', (req, res) => {
 //
 //   Drink.remove(req.params['drink_id']).then(() => {
