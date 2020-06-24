@@ -5,10 +5,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var cors = require('cors');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 var indexRouter = require('./routes/index');
 var drinksRouter = require('./routes/drinks');
 var recordsRouter = require('./routes/drinkRecords');
+var userRouter = require('./routes/user');
 
 var caffInformerScraper = require('./services/caffeineInformer');
 
@@ -35,11 +38,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+const User = require('./models/User');
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 // Routes
 
 app.use('/', indexRouter);
 app.use('/drinks', drinksRouter);
 app.use('/records', recordsRouter);
+app.use('/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
