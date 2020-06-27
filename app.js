@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var cors = require('cors');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var drinksRouter = require('./routes/drinks');
@@ -37,6 +38,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+const secret = "secret"
+
+app.use(session({secret: secret}));
 
 app.use(passport.initialize());
 app.use(passport.session());
