@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 
 const User = require('../models/User');
+const Session = require('../models/Session');
 
 router.post('/register', (req, res) => {
 
@@ -21,7 +22,44 @@ router.post('/register', (req, res) => {
 
 router.post('/login', passport.authenticate('local', {failureRedirect: '/login'}), (req, res) => {
 
-    res.json({success: true});
+    const username = req.body.username;
+
+    User.findOne({username: username}, (err, user) => {
+        if (err) {
+            res.sendStatus(403)
+        }
+
+        const id = user._id;
+
+        Session.deleteSession(id).then(() => {
+
+            Session.create(id).then(session => {
+
+                // Created session
+
+                console.log(session)
+
+                res.cookie('sessionId', session._id, {
+                    maxAge: 7*24*60*60
+                });
+
+                res.json({success: true});
+            }).catch(err => {
+                console.error(err);
+                res.sendStatus(500);
+            })
+
+        }).catch(err => {
+            console.error(err);
+            res.sendStatus(500);
+        });
+
+
+    });
+    // Delete any existing sessions and create a new one
+
+
+
 
 });
 
