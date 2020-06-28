@@ -17,7 +17,8 @@ var caffInformerScraper = require('./services/caffeineInformer');
 
 var app = express();
 
-app.use(cors());
+// app.use(cors());
+
 
 // Mongoose
 mongoose.connect('mongodb://localhost/CaffeineHLweb', {useNewUrlParser: true});

@@ -43,7 +43,7 @@ router.post('/login', passport.authenticate('local', {failureRedirect: '/login'}
                     maxAge: 7*24*60*60
                 });
 
-                res.json({success: true});
+                res.json({success: true, sessionId: session._id});
             }).catch(err => {
                 console.error(err);
                 res.sendStatus(500);
