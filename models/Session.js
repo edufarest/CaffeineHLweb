@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 
+
+// Represents an active user session
 let SessionSchema = new mongoose.Schema({
    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
    expires: {type: Date, default: Date.now() + 7*24*60*60*1000} // Last 1 week
