@@ -15,6 +15,8 @@ var userRouter = require('./routes/user');
 
 var caffInformerScraper = require('./services/caffeineInformer');
 
+require('dotenv').config();
+
 var app = express();
 
 // app.use(cors());
@@ -72,6 +74,6 @@ app.use(function(err, req, res, next) {
 });
 
 // FIXME Do not run everytime
-// caffInformerScraper.scrape();
+caffInformerScraper.scrape();
 
 module.exports = app;
