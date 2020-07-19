@@ -38,9 +38,6 @@ const scrape = () => {
                 const servingSize = parseInt(drink[1]) * 29.574; // fl oz -> ml
                 const caffeine = parseInt(drink[2]);
 
-                // console.log(name + " " + servingSize + " " + caffeine);
-
-                // FIXME Create or Update. Currently creating blindly
                 // FIXME Create seed mongodb scripts
                 Drink.upsert(name, servingSize, caffeine)
                     .then((drink) => {
@@ -52,7 +49,7 @@ const scrape = () => {
             });
         });
     });
-}
+};
 
 module.exports = {
     scrape,

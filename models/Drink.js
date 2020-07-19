@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 let drinkSchema = new mongoose.Schema({
+    user: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
     name: {type: String, default: "Drink"},
     servingSize: {type: Number, min: 0}, // ml
     caffeine: {type: Number, min: 0},    // mg
@@ -8,20 +9,21 @@ let drinkSchema = new mongoose.Schema({
 
 let Drink = mongoose.model('Drink', drinkSchema);
 
-const create = (name, servingSize, caffeine) => {
+const create = (name, servingSize, caffeine, user = null) => {
 
-  let drink = new Drink({name: name, servingSize: servingSize, caffeine: caffeine});
+  let drink = new Drink({name: name, servingSize: servingSize, caffeine: caffeine, user: user});
 
   return drink.save();
 
 };
 
 
-const find = (params) => {
+const find = (user = null) => {
 
     // TODO Implement params/query
 
-    return Drink.find().exec();
+    // Get public and private drinks (if any)
+    return Drink.find({ $or:[{'user': user}, {'user': null}]}).exec();
 
 };
 
