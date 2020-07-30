@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "test": "mocha"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -24,9 +25,11 @@
     "passport-local-mongoose": "^6.0.1"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "clean-css": "^4.2.3",
     "constantinople": "^4.0.1",
     "minimist": "^1.2.5",
+    "mocha": "^8.0.1",
     "mongoose": "^5.9.3",
     "osmosis": "^1.1.10"
   }
