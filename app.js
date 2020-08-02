@@ -74,6 +74,6 @@ app.use(function(err, req, res, next) {
 });
 
 // FIXME Do not run everytime
-caffInformerScraper.scrape();
+// caffInformerScraper.scrape();
 
 module.exports = app;

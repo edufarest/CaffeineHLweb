@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
     const caffeine = req.body.caffeine;
 
     Drink.create(name, servingSize, caffeine).then((drink) => {
-      res.json(drink);
+      res.status(201).json(drink);
     }).catch((err) => {
       res.status(500).send(err);
     })
@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
 router.delete('/:drink_id', (req, res) => {
 
   Drink.remove(req.params['drink_id']).then(() => {
-    res.send(req.params['drink_id'] + " deleted");
+    res.send(req.params['drink_id']);
   })
 
 });
